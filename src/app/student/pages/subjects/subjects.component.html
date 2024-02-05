@@ -1,0 +1,40 @@
+@if(showSpinner){
+<app-spinner></app-spinner>
+} @else{
+<div class="subjects">
+  <input
+    type="search"
+    name=""
+    id=""
+    class="form-control"
+    #input
+    placeholder="Search by name"
+    (input)="filterSubjects(input.value)"
+  />
+  @if(errorMessage){
+  <p class="text-info text-center">{{ errorMessage }}</p>
+  } @for (subject of subjects; track $index) {
+  <div
+    class="alert flex-wrap d-flex justify-content-between align-items center m-2 alert-light"
+    role="alert"
+  >
+    <h3>
+      {{ subject.name }}
+    </h3>
+    <select
+      #semester
+      class="form-select"
+      aria-label="Default select example"
+      (change)="changeRoute(subject.id, semester.value)"
+    >
+      <option selected disabled>View Chapters By Sem</option>
+      @for (sem of semesters; track $index) {
+      <option value="{{ sem.id }}">
+        {{ sem.name }}
+      </option>
+      }
+    </select>
+  </div>
+  }
+</div>
+}

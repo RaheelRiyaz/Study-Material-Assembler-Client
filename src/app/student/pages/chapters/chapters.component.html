@@ -1,0 +1,23 @@
+<div class="chapters">
+  @if (errorMessage) {
+    <p class="text-info text-center mt-5">{{errorMessage}}</p>
+  }
+  @for (chapter of chapters; track $index) {
+  <div
+    class="alert d-flex flex-wrap justify-content-between align-items center m-2 alert-light"
+    role="alert"
+  >
+    <div>
+      <h3>Chapter ({{ chapter.chapterNo }}) : {{ chapter.chapterName }}</h3>
+      <p>{{ chapter.title }}</p>
+    </div>
+    <div>
+      <a
+        class="btn btn-sm btn-success"
+        href="{{ 'http://localhost:5105' + chapter.filePath }}"
+        >View Note <i class="fa-regular fa-file ms-2"></i
+      ></a>
+    </div>
+  </div>
+  }
+</div>
